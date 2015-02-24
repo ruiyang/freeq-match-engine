@@ -1,6 +1,6 @@
 # freeq-match-engine
 
-FIXME
+An example server app for doing matching and filter building based on clj-freeq
 
 ## Prerequisites
 
