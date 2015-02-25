@@ -4,7 +4,8 @@
 
 (defn match [req]
   "run a matching rule against dataset"
-  (resp/response {:def "haha"}))
+  (let [user (get-in req [:body :user])]
+  (resp/response {:def user})))
 
 (defroutes match-routes
-  (GET "/matchit" [req] match))
+  (POST "/matchit" [req] match))
