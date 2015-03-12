@@ -15,5 +15,6 @@
 (def app
   (-> (routes match-routes app-routes)
       handler/api
-      json/wrap-json-body
-      json/wrap-json-response))
+      (json/wrap-json-body {:keywords? true})
+      json/wrap-json-response
+      ))
