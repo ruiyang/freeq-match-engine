@@ -14,6 +14,53 @@ To start a web server for the application, run:
 
     lein ring server
 
+## Sample request and response
+
+    minimal schema:
+    {
+      "rule": string
+      "source-name": string
+      "source-id-name": string
+      "candidate-name": string
+      "candidate-id-name": string
+      "source": array
+      "candidate": array
+    }
+
+    example request:
+    {
+      "rule": "equal(boy.age, girl.age)",
+      "source-name": "boy",
+      "source-id-name": "name",
+      "candidate-name": "girl",
+      "candidate-id-name": "name",
+      "source": [
+        {"name": "James", "age": "20"},
+        {"name": "John", "age": "25"}],
+      "candidate": [
+        {"name": "Mary1", "age": "21"},
+        {"name": "Mary2", "age": "20"},
+        {"name": "Mary3", "age": "25"},
+        {"name": "Mary4", "age": "25"}]
+    }
+
+    response:
+    {
+        "result": [
+            {
+                "James": [
+                    "Mary2"
+                ]
+            },
+            {
+                "John": [
+                    "Mary3",
+                    "Mary4"
+                ]
+            }
+        ]
+    }
+
 ## License
 
 Copyright © 2015 FIXME
