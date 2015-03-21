@@ -20,5 +20,11 @@
                  candidate-name
                  candidate-id-name)})))
 
+(defn parse [req]
+  "request body {:rule <rule expression>}, return the parsed AST
+   as json string"
+  (resp/response (parse-expression (get-in req [:body :rule]))))
+
 (defroutes match-routes
-  (POST "/matchit" [req] match))
+  (POST "/matchit" [req] match)
+  (POST "/parse" [req] parse))

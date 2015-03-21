@@ -26,3 +26,6 @@
                                         item
                                         candidate-name
                                         candidate))})))
+
+(defn parse-expression [exp]
+  (parse exp))

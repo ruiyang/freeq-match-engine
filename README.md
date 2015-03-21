@@ -15,16 +15,16 @@ To start a web server for the application, run:
     lein ring server
 
 ## Sample request and response
-
+### POST /matchit
     minimal schema:
     {
-      "rule": string
-      "source-name": string
-      "source-id-name": string
-      "candidate-name": string
-      "candidate-id-name": string
-      "source": array
-      "candidate": array
+    "rule": string
+    "source-name": string
+    "source-id-name": string
+    "candidate-name": string
+    "candidate-id-name": string
+    "source": array
+    "candidate": array
     }
 
     example request:
@@ -59,6 +59,25 @@ To start a web server for the application, run:
                 ]
             }
         ]
+    }
+
+### POST /parse
+request:
+
+    {
+        "rule": "equal(boy.age, girl.age)"
+    }
+
+response:
+   {
+    "EXP": {
+        "AND_EXPRESSION": {
+            "FUNC_CALL": [
+                "equal",
+                "boy.age",
+                "girl.age"
+            ]
+        }
     }
 
 ## License
