@@ -1,15 +1,11 @@
-var resp = {
-    "result": [
-        {
-            "James": [
-                "Mary2"
-            ]
-        },
-        {
-            "John": [
-                "Mary3",
-                "Mary4"
-            ]
-        }
-    ]
+var parserTree = {
+  "EXP": {
+    "AND_EXPRESSION": {
+      "FUNC_CALL": [
+        "equal",
+        "boy.age",
+        "girl.age"
+      ]
+    }
+  }
 };
