@@ -7,9 +7,25 @@
                  [ring/ring-defaults "0.1.2"]
                  [ring/ring-json "0.3.1"]
                  [ring-server "0.3.1"]
-                 [clj-freeq "0.0.1-SNAPSHOT"]]
-  :plugins [[lein-ring "0.8.13"]]
+                 [clj-freeq "0.0.1-SNAPSHOT"]
+                 [org.clojure/clojurescript "0.0-3196"]]
+  :plugins [[lein-ring "0.8.13"]
+            [lein-cljsbuild "1.0.5"]]
   :ring {:handler freeq-match-engine.handler/app}
   :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                                  [ring-mock "0.1.5"]]}}
-  :repositories [["local" ~(str (.toURI (java.io.File. "/Users/rui.yang/.m2/repository")))]])
+                                  [ring-mock "0.1.5"]
+                                  [com.cemerick/piggieback "0.2.0"]
+                                  [org.clojure/tools.nrepl "0.2.10"]
+                                  [com.cemerick/austin "0.1.6"]]
+                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
+  :repositories [["local" ~(str (.toURI (java.io.File. "/Users/rui.yang/.m2/repository")))]]
+  :cljsbuild {
+              :builds [{
+                                        ; The path to the top-level ClojureScript source directory:
+                        :source-paths ["src-cljs"]
+                                        ; The standard ClojureScript compiler options:
+                                        ; (See the ClojureScript compiler documentation for details.)
+                        :compiler {
+                                   :output-to "resources/public/cljs/main.js"  ; default: target/cljsbuild-main.js
+                                   :optimizations :whitespace
+                                   :pretty-print true}}]})
