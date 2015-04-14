@@ -12,10 +12,3 @@
   (GET "/" []  (resp/redirect "/index.htm"))
   (GET "/json" [] (resp/response {:abc "abc"}))
   (route/not-found "Not Found"))
-
-(def app
-  (-> (routes match-routes app-routes)
-      handler/api
-      (json/wrap-json-body {:keywords? true})
-      json/wrap-json-response
-      (wrap-resource "public")))

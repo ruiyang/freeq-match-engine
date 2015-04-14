@@ -41667,12 +41667,8 @@ clojure.browser.repl.connect = function clojure$browser$repl$connect(repl_server
   clojure.browser.repl.bootstrap.call(null);
   return repl_connection;
 };
-goog.provide("freeq_match_engine.repl");
+goog.provide("freeq_match_engine.foo");
 goog.require("cljs.core");
 goog.require("clojure.browser.repl");
-if (typeof freeq_match_engine.repl.conn !== "undefined") {
-} else {
-  freeq_match_engine.repl.conn = clojure.browser.repl.connect.call(null, "http://localhost:9000/repl");
-}
 cljs.core.enable_console_print_BANG_.call(null);
-cljs.core.println.call(null, "Hello world!");
+1 + 2 + 3;
