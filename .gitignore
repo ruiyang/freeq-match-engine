@@ -11,3 +11,4 @@ pom.xml.asc
 out/
 .repl*
 .cljs_*
+resources/public/cljs/*
