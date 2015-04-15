@@ -5,3 +5,6 @@
   (repl/connect "http://localhost:9000/repl"))
 
 (enable-console-print!)
+
+(.log js/console "abc")
+(def names (.getElementsByTagName js/document "body"))

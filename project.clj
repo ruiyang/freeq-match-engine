@@ -31,4 +31,14 @@
                         :compiler {
                                    :output-to "resources/public/cljs/main.js"  ; default: target/cljsbuild-main.js
                                    :optimizations :whitespace
-                                   :pretty-print true}}]})
+                                   :pretty-print true}}
+                       {
+                                        ; The path to the top-level ClojureScript source directory:
+                        :source-paths ["dev/src/cljs"]
+                                        ; The standard ClojureScript compiler options:
+                                        ; (See the ClojureScript compiler documentation for details.)
+                        :compiler {
+                                   :output-to "dev/resources/web/cljs/repl.js"  ; default: target/cljsbuild-main.js
+                                   :optimizations :whitespace
+                                   :pretty-print true}}
+                       ]})
