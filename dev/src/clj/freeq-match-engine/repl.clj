@@ -29,7 +29,8 @@
       handler/api
       (json/wrap-json-body {:keywords? true})
       json/wrap-json-response
-      (wrap-resource "public")))
+      (wrap-resource "public")
+      (wrap-resource "web")))
 
 (defn get-handler []
   ;; #'app expands to (var app) so that when we reload our code,

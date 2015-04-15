@@ -12,3 +12,4 @@ out/
 .repl*
 .cljs_*
 resources/public/cljs/*
+dev/resources/web/cljs/*
