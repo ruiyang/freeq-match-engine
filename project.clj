@@ -16,8 +16,8 @@
   :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                                   [ring-mock "0.1.5"]
                                   [enlive "1.1.5"]
-                                  [org.clojure/tools.nrepl "0.2.10"]]
-                   :plugins [[com.cemerick/austin "0.1.6"]]
+                                  [org.clojure/tools.nrepl "0.2.10"]
+                                  [com.cemerick/piggieback "0.2.0"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    :resource-paths ["dev/resources"]
                    :source-paths ["dev/src/clj" "src" "src-cljs"]}}

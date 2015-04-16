@@ -2,11 +2,8 @@
   (:use ring.server.standalone
         [freeq-match-engine.handler :as freeq-handler]
         [freeq-match-engine.match-handler :as match]
-        [cemerick.austin.repls :refer (browser-connected-repl-js)]
-        [net.cgrand.enlive-html :as enlive]
         [compojure.route :refer (resources)]
         [compojure.core :refer (GET defroutes routes)]
-        [clojure.java.io :as io]
         [ring.middleware.json :as json :only [wrap-json-response wrap-json-body]]
         [ring.util.response :as response]
         [compojure.handler :as handler]
@@ -15,17 +12,17 @@
 
 (defonce server (atom nil))
 
-(enlive/deftemplate repl
-  (io/resource "web/repl.html")
-  []
-  [:body] (enlive/append
-           (enlive/html [:script (browser-connected-repl-js)])))
+;; (enlive/deftemplate repl
+;;   (io/resource "web/repl.html")
+;;   []
+;;   [:body] (enlive/append
+;;            (enlive/html [:script (browser-connected-repl-js)])))
 
-(defroutes repl-routes
-  (GET "/repl" req (content-type (response (reduce str (repl))) "text/html")))
+;; (defroutes repl-routes
+;;   (GET "/repl" req (content-type (response (reduce str (repl))) "text/html")))
 
 (def app
-  (-> (routes repl-routes match/match-routes freeq-handler/app-routes)
+  (-> (routes match/match-routes freeq-handler/app-routes)
       handler/api
       (json/wrap-json-body {:keywords? true})
       json/wrap-json-response
