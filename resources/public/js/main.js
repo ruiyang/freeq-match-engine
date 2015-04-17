@@ -1,5 +1,29 @@
+var expressionList = [
+                {
+                    "FUNC_CALL": [
+                        "equal",
+                        "boy.age",
+                        "girl.age"
+                    ]
+                },
+                {
+                    "FUNC_CALL": [
+                        "equal",
+                        "boy.name",
+                        "girl.age"
+                    ]
+                },
+                {
+                    "FUNC_CALL": [
+                        "equal",
+                        "boy.name",
+                        "'John'"
+                    ]
+                }
+            ];
+
 var functionComponent = React.render(
-  <FunctionComponent parseTree={["contains", "bankTransaction.amount", "journal.amount"]}/>,
+  <LogicalExpressionComponent type="AND_EXPRESSION" expressionList={expressionList}/>,
   document.getElementById('container')
 );
 

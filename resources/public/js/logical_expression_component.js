@@ -1,26 +1,25 @@
 var LogicalExpressionComponent = React.createClass({
-  getInitialState: function() {
-    return {
-      expressionsSupported: ["AND", "OR"],
-      currentLogicalExpressionType: this.props.type,
-      expressionList: this.props.parseTree[0],
-      currentTargetField: this.props.parseTree[2]
-    };
-  },
+    getInitialState: function() {
+        return {
+            expressionsSupported: ["AND_EXPRESSION", "OR"],
+            currentLogicalExpressionType: this.props.type,
+            expressionList: this.props.expressionList
+        };
+    },
 
-  render: function() {
-    return (
-      <div>
-        {this.renderDropdown("srcFields", this.state.currentSrcField, this.handleSrcFieldChange)}
-      {this.renderDropdown("functions", this.state.currentFunction, this.handleFunctionChange)}
-      {this.renderDropdown("targetFields", this.state.currenttargetField, this.handleTargetFieldChange)}
-      </div>
-    );
-  },
+    renderFunctionList: function (functionCalls) {
+        return functionCalls.map(function(funcCall) {
+            var funcParams = funcCall["FUNC_CALL"];
+            return <FunctionComponent funcName={funcParams[0]} paramLeft = {funcParams[1]} paramRight = {funcParams[2]} />
+        });
+    },
 
-  getExpression: function () {
-    return this.state.currentFunction + "(" + this.state.currentSrcField + ", " +  this.state.currentTargetField + ")";
-  }
+    render: function() {
+        var functionCalls = this.renderFunctionList(this.state.expressionList);
+        return (
+            <div className="andExpression">{functionCalls}</div>
+        );
+    },
 });
 
-var FunctionComponentFactory = React.createFactory(FunctionComponent);
+//var LogicalExpressionComponent = React.createFactory(FunctionComponentFactory);
