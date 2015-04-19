@@ -11,3 +11,7 @@
 .subExpression {
     padding: 5px;
 }
+
+#expressionDiv, #container {
+    padding: 5px;
+}

@@ -1,9 +1,9 @@
 var LogicalExpressionComponent = React.createClass({
     getInitialState: function() {
-      var type = this.props.expression.hasOwnProperty("AND") ? "AND" : "OR";
         return {
-            type: type,
-            expressionList: this.props.expression[type]
+          expression: "",
+          type: "",
+          expressionList: []
         };
     },
 
@@ -21,10 +21,11 @@ var LogicalExpressionComponent = React.createClass({
   },
 
     render: function() {
-        var expressions = this.renderExpressions(this.state.expressionList);
-        return (
-            <div
-          className= {this.state.type.toLowerCase()}>{expressions}</div>
-        );
+      this.state.type = this.props.expression.hasOwnProperty("AND") ? "AND" : "OR";
+      this.state.expressionList = this.props.expression[this.state.type];
+      var expressions = this.renderExpressions(this.state.expressionList);
+      return (
+          <div className= {this.state.type.toLowerCase()}>{expressions}</div>
+      );
     },
 });
