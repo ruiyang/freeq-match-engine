@@ -1,4 +1,13 @@
-.andExpression {
+.and {
     padding-top: 1em;
     background-color: green;
+}
+
+.or {
+    padding-top: 1em;
+    background-color: yellow;
+}
+
+.subExpression {
+    padding: 5px;
 }

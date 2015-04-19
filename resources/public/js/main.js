@@ -22,8 +22,8 @@ var expressionList = [
                 }
             ];
 
-var functionComponent = React.render(
-  <LogicalExpressionComponent type="AND_EXPRESSION" expressionList={expressionList}/>,
+var expressionComponent = React.render(
+  <LogicalExpressionComponent type="AND" expression={parserTree}/>,
   document.getElementById('container')
 );
 

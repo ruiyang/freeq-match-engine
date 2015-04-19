@@ -1,26 +1,26 @@
 var parserTree = {
-    "EXP": [
+    "AND": [
         {
-            "AND_EXPRESSION": [
+            "FUNC_CALL": [
+                "equal",
+                "boy.age",
+                "girl.age"
+            ]
+        },
+        {
+            "OR": [
                 {
                     "FUNC_CALL": [
                         "equal",
-                        "boy.age",
-                        "girl.age"
+                        "boy.age2",
+                        "girl.age2"
                     ]
                 },
                 {
                     "FUNC_CALL": [
                         "equal",
-                        "boy.agee",
-                        "girl.age"
-                    ]
-                },
-                {
-                    "FUNC_CALL": [
-                        "equal",
-                        "boy.name",
-                        "'John'"
+                        "boy.age3",
+                        "girl.age3"
                     ]
                 }
             ]

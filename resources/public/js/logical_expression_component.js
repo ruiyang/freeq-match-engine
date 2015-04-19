@@ -1,25 +1,30 @@
 var LogicalExpressionComponent = React.createClass({
     getInitialState: function() {
+      var type = this.props.expression.hasOwnProperty("AND") ? "AND" : "OR";
         return {
-            expressionsSupported: ["AND_EXPRESSION", "OR"],
-            currentLogicalExpressionType: this.props.type,
-            expressionList: this.props.expressionList
+            type: type,
+            expressionList: this.props.expression[type]
         };
     },
 
-    renderFunctionList: function (functionCalls) {
-        return functionCalls.map(function(funcCall) {
-            var funcParams = funcCall["FUNC_CALL"];
-            return <FunctionComponent funcName={funcParams[0]} paramLeft = {funcParams[1]} paramRight = {funcParams[2]} />
-        });
-    },
+  renderExpressions: function (expressionList) {
+    return expressionList.map(function(expression) {
+      if (expression.hasOwnProperty("AND") || expression.hasOwnProperty("OR")) {
+        return <div className="subExpression"><LogicalExpressionComponent expression = { expression}/></div>;
+      } else if (expression.hasOwnProperty("FUNC_CALL")) {
+        funcParams = expression["FUNC_CALL"];
+        return <FunctionComponent funcName={funcParams[0]} paramLeft = {funcParams[1]} paramRight = {funcParams[2]} />;
+      } else {
+        return <div>Unknown</div>;
+      }
+    });
+  },
 
     render: function() {
-        var functionCalls = this.renderFunctionList(this.state.expressionList);
+        var expressions = this.renderExpressions(this.state.expressionList);
         return (
-            <div className="andExpression">{functionCalls}</div>
+            <div
+          className= {this.state.type.toLowerCase()}>{expressions}</div>
         );
     },
 });
-
-//var LogicalExpressionComponent = React.createFactory(FunctionComponentFactory);
