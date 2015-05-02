@@ -27,9 +27,12 @@ var expressionComponent = React.render(
   document.getElementById('container')
 );
 
-var generateExpressionButton = document.getElementById('visualIt');
+var visualizeExpressionButton = document.getElementById('visualIt');
+var generateExpressionButton = document.getElementById('generateExpression');
 
-generateExpressionButton.onclick = function (e) {
+var expressionComponent;
+
+visualizeExpressionButton.onclick = function (e) {
   var expression = $('#expression').val();
   $.ajax({
     type: "POST",
@@ -38,10 +41,14 @@ generateExpressionButton.onclick = function (e) {
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     success: function (data) {
-      React.render(
+      expressionComponent = React.render(
           <LogicalExpressionComponent type="AND" expression={data}/>,
         document.getElementById('container')
       );
     }
   })
+};
+
+generateExpressionButton.onclick = function (e) {
+  $('#expression').val(expressionComponent.getExpression());
 };

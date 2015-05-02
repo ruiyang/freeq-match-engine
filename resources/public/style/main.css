@@ -15,3 +15,12 @@
 #expressionDiv, #container {
     padding: 5px;
 }
+
+.actionRow {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.actionRow button {
+    margin-right: 10px;
+}

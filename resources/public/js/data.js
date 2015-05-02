@@ -12,15 +12,15 @@ var parserTree = {
                 {
                     "FUNC_CALL": [
                         "equal",
-                        "boy.age2",
-                        "girl.age2"
+                        "boy.age",
+                        "girl.age"
                     ]
                 },
                 {
                     "FUNC_CALL": [
                         "equal",
-                        "boy.age3",
-                        "girl.age3"
+                        "boy.age",
+                        "girl.age"
                     ]
                 }
             ]

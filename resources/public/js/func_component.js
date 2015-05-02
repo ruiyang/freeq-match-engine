@@ -41,7 +41,7 @@ var FunctionComponent = React.createClass({
         <Grid>
         <Row className='show-grid'>
         <Col xs={4}>{this.renderDropdown("srcFields", this.state.paramLeft, this.handleSrcFieldChange)}</Col>
-      <Col xs={4}>{this.renderDropdown("functions", this.state.funcN, this.handleFunctionChange)}</Col>
+      <Col xs={4}>{this.renderDropdown("functions", this.state.funcName, this.handleFunctionChange)}</Col>
       <Col xs={4}>{this.renderDropdown("targetFields", this.state.currenttargetField, this.handleTargetFieldChange)}</Col>
       </Row>
         </Grid>
@@ -50,7 +50,7 @@ var FunctionComponent = React.createClass({
   },
 
   getExpression: function () {
-    return this.state.funcN + "(" + this.state.paramLeft + ", " +  this.state.paramRight + ")";
+    return this.state.funcName + "(" + this.state.paramLeft + ", " +  this.state.paramRight + ")";
   }
 });
 
