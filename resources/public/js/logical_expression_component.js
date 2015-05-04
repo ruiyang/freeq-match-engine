@@ -1,18 +1,13 @@
 var LogicalExpressionComponent = React.createClass({
-    getInitialState: function() {
-        return {
-          expression: "",
-          type: "",
-          expressionList: []
-        };
-    },
+  getInitialState: function() {
+    return this._getStateFromExpression(this.props.expression);
+  },
 
   renderExpressions: function (expressionList) {
     var index = 0;
     return expressionList.map(function(expression) {
       index = index + 1;
       if (expression.hasOwnProperty("AND") || expression.hasOwnProperty("OR")) {
-        console.log(expression);
         return <div className="subExpression"><LogicalExpressionComponent expression = { expression} ref={"item" + index}/></div>;
       } else if (expression.hasOwnProperty("FUNC_CALL")) {
         funcParams = expression["FUNC_CALL"];
@@ -24,8 +19,21 @@ var LogicalExpressionComponent = React.createClass({
   },
 
   _addExpression: function() {
+    this.state.expressionList.unshift({FUNC_CALL: ["equals", "boy.age", "girl.age"]});
     this.setState({type: this.state.type,
-                   expressionList: this.state.expressionList.unshift({FUNC_CALL: ["equals", "boy.age", "girl.age"]})});
+                   expressionList: this.state.expressionList});
+  },
+
+  _addAndSubExpression: function() {
+    this.state.expressionList.unshift({"AND": [{FUNC_CALL: ["equals", "boy.age", "girl.age"]}]});
+    this.setState({type: this.state.type,
+                   expressionList: this.state.expressionList});
+  },
+
+  _addOrSubExpression: function() {
+    this.state.expressionList.unshift({"OR": [{FUNC_CALL: ["equals", "boy.age", "girl.age"]}]});
+    this.setState({type: this.state.type,
+                   expressionList: this.state.expressionList});
   },
 
   getExpression: function() {
@@ -41,23 +49,30 @@ var LogicalExpressionComponent = React.createClass({
     return expression;
   },
 
-  _alertExpression: function () {
+  componentWillReceiveProps: function(nextProp) {
+    this.setState(this._getStateFromExpression(nextProp.expression));
+  },
+
+  _getStateFromExpression: function(expression) {
+    var type = expression.hasOwnProperty("AND") ? "AND" : "OR";
+    return{
+      type: type,
+      expressionList: expression[type]
+    };
   },
 
   render: function() {
     var Button = ReactBootstrap.Button;
-      this.state.type = this.props.expression.hasOwnProperty("AND") ? "AND" : "OR";
-      this.state.expressionList = this.props.expression[this.state.type];
-    this.state.expressions = this.renderExpressions(this.state.expressionList);
-      return (
-          <div className={this.state.type.toLowerCase()}>
-          <div className={"actionRow"}>
-          <Button onClick={this._addExpression}>Add</Button>
-          <Button onClick={this._addSubExpression}>Add Sub-Expression</Button>
-          </div>
-
-          <div className="">{this.state.expressions}</div>
-          </div>
-      );
-    },
+    var expressions = this.renderExpressions(this.state.expressionList);
+    return (
+        <div className={this.state.type.toLowerCase()}>
+        <div className={"actionRow"}>
+        <Button onClick={this._addExpression}>Add</Button>
+        <Button onClick={this._addAndSubExpression}>Add AND-Expression</Button>
+        <Button onClick={this._addOrSubExpression}>Add OR-Expression</Button>
+        </div>
+        <div className="">{expressions}</div>
+        </div>
+    );
+  }
 });

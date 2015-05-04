@@ -1,11 +1,15 @@
 .and {
     padding-top: 1em;
     background-color: green;
+    border-style: solid;
+    border-color: purple
 }
 
 .or {
     padding-top: 1em;
     background-color: yellow;
+    border-style: solid;
+    border-color: purple;
 }
 
 .subExpression {

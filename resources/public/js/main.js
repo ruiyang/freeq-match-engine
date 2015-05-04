@@ -23,7 +23,7 @@ var expressionList = [
             ];
 
 var expressionComponent = React.render(
-  <LogicalExpressionComponent type="AND" expression={parserTree}/>,
+  <LogicalExpressionComponent expression={parserTree}/>,
   document.getElementById('container')
 );
 
@@ -42,7 +42,7 @@ visualizeExpressionButton.onclick = function (e) {
     dataType: "json",
     success: function (data) {
       expressionComponent = React.render(
-          <LogicalExpressionComponent type="AND" expression={data}/>,
+          <LogicalExpressionComponent expression={data}/>,
         document.getElementById('container')
       );
     }
