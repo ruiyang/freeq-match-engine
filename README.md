@@ -11,13 +11,15 @@ You will need [Leiningen][] 2.0.0 or above installed.
 ## Running
 
 To start a web server for the application, run:
-
+    ```bash
     lein ring server
+    ```
 
 ## Sample request and response
 ### POST /matchit
-    minimal schema:
-    {
+minimal schema:
+```javascript
+{
     "rule": string
     "source-name": string
     "source-id-name": string
@@ -25,9 +27,11 @@ To start a web server for the application, run:
     "candidate-id-name": string
     "source": array
     "candidate": array
-    }
+}
+```
 
-    example request:
+example request:
+```javascript
     {
       "rule": "equal(boy.age, girl.age)",
       "source-name": "boy",
@@ -43,8 +47,9 @@ To start a web server for the application, run:
         {"name": "Mary3", "age": "25"},
         {"name": "Mary4", "age": "25"}]
     }
-
-    response:
+```
+response:
+```javascript
     {
         "result": [
             {
@@ -60,15 +65,16 @@ To start a web server for the application, run:
             }
         ]
     }
-
+```
 ### POST /parse
 request:
-
+```javascript
     {
         "rule": "equal(boy.age, girl.age)"
     }
-
+```
 response:
+```javascript
    {
     "EXP": {
         "AND_EXPRESSION": {
@@ -79,7 +85,6 @@ response:
             ]
         }
     }
-
+```
 ## License
-
-Copyright © 2015 FIXME
+To Be Added
