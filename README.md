@@ -11,9 +11,9 @@ You will need [Leiningen][] 2.0.0 or above installed.
 ## Running
 
 To start a web server for the application, run:
-    ```bash
-    lein ring server
-    ```
+```bash
+lein ring server
+```
 
 ## Sample request and response
 ### POST /matchit
